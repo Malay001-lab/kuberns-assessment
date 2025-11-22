@@ -71,7 +71,6 @@ WSGI_APPLICATION = 'kuberns.wsgi.application'
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 if DATABASE_URL:
-    
     DATABASES = {
         "default": dj_database_url.parse(
             DATABASE_URL,
@@ -79,6 +78,7 @@ if DATABASE_URL:
             ssl_require=False
         )
     }
+
 else:
     
    DATABASES = {
