@@ -1,0 +1,243 @@
+{
+  "info": {
+    "_postman_id": "kuberns-api-collection-updated",
+    "name": "Kuberns API Collection (Updated)",
+    "description": "Updated API collection for the Kuberns Full Stack System — includes metadata, improved examples, and corrected URLs.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "webapp_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "environment_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "instance_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "log_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Metadata",
+      "item": [
+        {
+          "name": "Get Metadata",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/metadata/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "metadata", ""]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "WebApps",
+      "item": [
+        {
+          "name": "Create WebApp (With DB)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"my-awesome-app\",\n  \"region\": \"us-east-1\",\n  \"template\": \"react\",\n  \"plan\": \"starter\",\n  \"organization\": \"acme-corp\",\n  \"repo\": \"my-app\",\n  \"branch\": \"main\",\n  \"database_enabled\": true,\n  \"database_type\": \"postgresql\",\n  \"database_config\": {\n    \"name\": \"my_awesome_db\",\n    \"username\": \"db_user\"\n  },\n  \"environment\": {\n    \"port\": 3001,\n    \"environment_variables\": {\n      \"NODE_ENV\": \"production\",\n      \"API_URL\": \"https://api.example.com\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/webapps/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "webapps", ""]
+            }
+          }
+        },
+        {
+          "name": "Create WebApp (No DB)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"frontend-only-app\",\n  \"region\": \"us-west-2\",\n  \"template\": \"vue\",\n  \"plan\": \"starter\",\n  \"organization\": \"open-source\",\n  \"repo\": \"my-app\",\n  \"branch\": \"main\",\n  \"database_enabled\": false,\n  \"environment\": {\n    \"port\": 3020,\n    \"environment_variables\": {\n      \"DEBUG\": \"false\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/webapps/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "webapps", ""]
+            }
+          }
+        },
+        {
+          "name": "List WebApps",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/webapps/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "webapps", ""]
+            }
+          }
+        },
+        {
+          "name": "Get WebApp Details",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/webapps/{{webapp_id}}/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "webapps", "{{webapp_id}}", ""]
+            }
+          }
+        },
+        {
+          "name": "Get Deployment Status",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/webapps/{{webapp_id}}/status/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "webapps", "{{webapp_id}}", "status", ""]
+            }
+          }
+        },
+        {
+          "name": "Get Deployment Logs",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/webapps/{{webapp_id}}/logs/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "webapps", "{{webapp_id}}", "logs", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Environments",
+      "item": [
+        {
+          "name": "List Environments",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/environments/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "environments", ""]
+            }
+          }
+        },
+        {
+          "name": "Get Environment Details",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/environments/{{environment_id}}/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "environments", "{{environment_id}}", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Instances",
+      "item": [
+        {
+          "name": "List Instances",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/instances/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "instances", ""]
+            }
+          }
+        },
+        {
+          "name": "Get Instance Details",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/instances/{{instance_id}}/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "instances", "{{instance_id}}", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Logs",
+      "item": [
+        {
+          "name": "List All Logs",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/logs/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "logs", ""]
+            }
+          }
+        },
+        {
+          "name": "Get Log Details",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/logs/{{log_id}}/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "logs", "{{log_id}}", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Documentation",
+      "item": [
+        {
+          "name": "Swagger UI",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/docs/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "docs", ""]
+            }
+          }
+        },
+        {
+          "name": "OpenAPI Schema",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/schema/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "schema", ""]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
